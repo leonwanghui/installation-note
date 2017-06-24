@@ -48,4 +48,4 @@ nohup kubernetes-1.6.0/hack/local_up_cluster.sh &>> kube.log &
 
 if you want to set up an environment for service catalog, then run:
 
-nohup KUBE_ENABLE_CLUSTER_DNS=true hack/local-up-cluster.sh -O &>> kube.log &
+KUBE_ENABLE_CLUSTER_DNS=true nohup kubernetes-1.6.0/hack/local-up-cluster.sh -O &>> kube.log &
