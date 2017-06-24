@@ -43,7 +43,9 @@ go get -u github.com/cloudflare/cfssl/cmd/...
 kubernetes-1.6.0/hack/local-up-cluster.sh
 
 if you want to run it background, then run:
- nohup kubernetes-1.6.0/hack/local_up_cluster.sh &>> kube.log &
+
+nohup kubernetes-1.6.0/hack/local_up_cluster.sh &>> kube.log &
 
 if you want to set up an environment for service catalog, then run:
- nohup KUBE_ENABLE_CLUSTER_DNS=true hack/local-up-cluster.sh -O &>> kube.log &
+
+nohup KUBE_ENABLE_CLUSTER_DNS=true hack/local-up-cluster.sh -O &>> kube.log &
