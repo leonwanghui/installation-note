@@ -52,7 +52,7 @@ kubectl get po -n opensds-broker (check if opensds broker pod is running)
 kubectl config set-cluster service-catalog --server=http://$SVC_CAT_API_SERVER_IP:30080
 kubectl config set-context service-catalog --cluster=service-catalog
 
-kubectl context=service-catalog get brokers, instances, bindings
+kubectl context=service-catalog get brokers,instances,bindings
 ```
 
 ## Start to work
@@ -62,7 +62,7 @@ kubectl context=service-catalog get brokers, instances, bindings
 ```
 kubectl --context=service-catalog create -f examples/opensds-broker.yaml
 
-kubectl --context=service-catalog get brokers, serviceclasses
+kubectl --context=service-catalog get brokers,serviceclasses
 ```
 
 2. Create opensds instance
@@ -87,19 +87,19 @@ kubectl get secrets -n opensds
 1. Delete opensds instance binding
 
 ```
-kubectl --context=service-catalog delete -f examples/opensds-binding.yaml -n opensds
+kubectl --context=service-catalog delete bindings opensds-instance-binding -n opensds
 ```
 
 2. Delete opensds instance
 
 ```
-kubectl --context=service-catalog delete -f examples/opensds-instance.yaml -n opensds
+kubectl --context=service-catalog delete instances opensds-instance -n opensds
 ```
 
 3. Delete opensds broker
 
 ```
-kubectl --context=service-catalog delete -f examples/opensds-broker.yaml
+kubectl --context=service-catalog delete brokers opensds-broker
 ```
 
 4. Uninstall opensds broker pod
