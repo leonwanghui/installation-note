@@ -52,10 +52,12 @@ kubectl get po -n opensds-broker (check if opensds broker pod is running)
 kubectl config set-cluster service-catalog --server=http://$SVC_CAT_API_SERVER_IP:30080
 kubectl config set-context service-catalog --cluster=service-catalog
 
-kubectl context=service-catalog get brokers,instances,bindings
+kubectl --context=service-catalog get brokers,instances,bindings
 ```
 
 ## Start to work
+
+### If you run on minikube
 
 1. Create opensds broker
 
@@ -82,7 +84,36 @@ kubectl --context=service-catalog get bindings -n opensds
 kubectl get secrets -n opensds
 ```
 
+### If you run on local cluster(suppose v1.6.0)
+
+1. Create opensds broker
+
+```
+~/kubernetes-1.6.0/cluster/kubectl.sh --context=service-catalog create -f examples/opensds-broker.yaml
+
+~/kubernetes-1.6.0/cluster/kubectl.sh --context=service-catalog get brokers,serviceclasses
+```
+
+2. Create opensds instance
+
+```
+~/kubernetes-1.6.0/cluster/kubectl.sh --context=service-catalog create -f examples/opensds-instance.yaml -n opensds
+
+~/kubernetes-1.6.0/cluster/kubectl.sh --context=service-catalog get instances -n opensds
+```
+
+3. Create opensds instance binding
+
+```
+~/kubernetes-1.6.0/cluster/kubectl.sh --context=service-catalog create -f examples/opensds-binding.yaml -n opensds
+
+~/kubernetes-1.6.0/cluster/kubectl.sh --context=service-catalog get bindings -n opensds
+~/kubernetes-1.6.0/cluster/kubectl.sh get secrets -n opensds
+```
+
 ## Clear it up
+
+### If you run on minikube
 
 1. Delete opensds instance binding
 
@@ -100,6 +131,38 @@ kubectl --context=service-catalog delete instances opensds-instance -n opensds
 
 ```
 kubectl --context=service-catalog delete brokers opensds-broker
+```
+
+4. Uninstall opensds broker pod
+
+```
+helm delete --purge opensds-broker
+```
+
+5. Uninstall service catalog pods
+
+```
+helm delete --purge catalog
+```
+
+### If you run on local cluster(suppose v1.6.0)
+
+1. Delete opensds instance binding
+
+```
+~/kubernetes-1.6.0/cluster/kubectl.sh --context=service-catalog delete bindings opensds-instance-binding -n opensds
+```
+
+2. Delete opensds instance
+
+```
+~/kubernetes-1.6.0/cluster/kubectl.sh --context=service-catalog delete instances opensds-instance -n opensds
+```
+
+3. Delete opensds broker
+
+```
+~/kubernetes-1.6.0/cluster/kubectl.sh --context=service-catalog delete brokers opensds-broker
 ```
 
 4. Uninstall opensds broker pod
