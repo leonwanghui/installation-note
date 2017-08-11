@@ -111,14 +111,22 @@ kubectl get secrets -n opensds
 ~/kubernetes-1.6.0/cluster/kubectl.sh get secrets -n opensds
 ```
 
-## Clear it up
+4. Creat opensds wordpress for testing
+
+```
+~/kubernetes-1.6.0/cluster/kubectl.sh create -f example/Wordpress.yaml -n opensds
+~/kubernetes-1.6.0/cluster/kubectl.sh get po -n opensds
+~/kubernetes-1.6.0/cluster/kubectl.sh get po -n service
+```
+
+## Clean it up
 
 ### If you run on minikube
 
 1. Delete opensds instance binding
 
 ```
-kubectl --context=service-catalog delete bindings opensds-instance-binding -n opensds
+kubectl --context=service-catalog delete bindings opensds-binding -n opensds
 ```
 
 2. Delete opensds instance
@@ -150,7 +158,7 @@ helm delete --purge catalog
 1. Delete opensds instance binding
 
 ```
-~/kubernetes-1.6.0/cluster/kubectl.sh --context=service-catalog delete bindings opensds-instance-binding -n opensds
+~/kubernetes-1.6.0/cluster/kubectl.sh --context=service-catalog delete bindings opensds-binding -n opensds
 ```
 
 2. Delete opensds instance
