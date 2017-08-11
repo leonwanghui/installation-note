@@ -114,7 +114,7 @@ kubectl get secrets -n opensds
 4. Creat opensds wordpress for testing
 
 ```
-~/kubernetes-1.6.0/cluster/kubectl.sh create -f example/Wordpress.yaml -n opensds
+~/kubernetes-1.6.0/cluster/kubectl.sh create -f examples/Wordpress.yaml -n opensds
 ~/kubernetes-1.6.0/cluster/kubectl.sh get po -n opensds
 ~/kubernetes-1.6.0/cluster/kubectl.sh get po -n service
 ```
