@@ -11,6 +11,9 @@ etcd --advertise-client-urls http://100.64.128.40:2379 --listen-client-urls http
 ```
 sudo docker run -d --net=host -v /etc/ceph:/etc/ceph -e MON_IP=100.64.128.40 -e CEPH_PUBLIC_NETWORK=100.64.128.0/24 ceph/demo
 ```
+If some errors occur in rbd map: ```YOUR_HOSTNAME 100.64.128.40:6789 feature set mismatch```, it can be solved in two ways:
+- ```ceph osd crush tunables legacy```
+- Add ```rbd_default_features = 1``` one line in ```/etc/ceph/ceph.conf``` file
 
 ## OpenSDS Service Installation
 
