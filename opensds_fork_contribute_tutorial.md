@@ -20,7 +20,7 @@ git clone https://your_repo_url/opensds.git
 
 To avoid inconsistency between multiple branches, we SUGGEST checking out to a new branch:
 ```
-git checkout -b new_branch_name origin/devlopment
+git checkout -b new_branch_name origin/development
 ```
 Then you can change the code arbitrarily.
 
